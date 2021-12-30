@@ -1,5 +1,6 @@
 import React, { useState, forwardRef, LegacyRef, useRef, useEffect, useContext } from 'react';
 import classNames from 'classnames';
+import SlideDown from 'react-slidedown';
 import { createPopper } from '@popperjs/core';
 import ResizeObserver from 'resize-observer-polyfill';
 import { SidebarContext } from '../ProSidebar';
@@ -98,7 +99,7 @@ const SubMenu: React.ForwardRefRenderFunction<unknown, Props> = (
     <li
       ref={subMenuRef}
       className={classNames('pro-menu-item pro-sub-menu', className, {
-        open: typeof open === 'undefined' ? !closed : open,
+        open: true,
       })}
       {...rest}
     >
@@ -122,6 +123,15 @@ const SubMenu: React.ForwardRefRenderFunction<unknown, Props> = (
           <span className="pro-arrow" />
         </span>
       </div>
+
+      <SlideDown
+        closed={false}
+        className="pro-inner-list-item"
+      >
+        <div>
+          <ul>{children}</ul>
+        </div>
+      </SlideDown>
     </li>
   );
 };
